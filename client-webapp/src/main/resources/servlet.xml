@@ -12,7 +12,7 @@
 
     <bean id="myServiceClient" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
         <property name="serviceUrl">            <!--//hessian的地址和名称请求转发的名称-->
-            <value>http://127.0.0.1:8080/HessianService/remoting</value>
+            <value>http://127.0.0.1:8888/remoting</value>
         </property>
         <property name="serviceInterface">  <!-- //hessian所要调用的接口-->
             <value>com.hhl.service.IHello</value>
