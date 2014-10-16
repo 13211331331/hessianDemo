@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> <!--添加监听器 -->
+    </listener>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:servlet.xml</param-value>
+    </context-param>
+
+
+
+    <servlet>
+        <servlet-name>Hello</servlet-name>
+        <servlet-class>com.caucho.hessian.server.HessianServlet</servlet-class>
+        <init-param>
+            <param-name>home-class</param-name>
+            <param-value>com.hhl.service.IHelloImpl</param-value>
+        </init-param>
+        <init-param>
+            <param-name>home-api</param-name>
+            <param-value>com.hhl.service.IHello</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Hello</servlet-name>
+        <url-pattern>/Hello</url-pattern>
+    </servlet-mapping>
+
+
+
+
+
+    <!-- Hessian通过Servlet提供远程服务，
+    需要将某个匹配的模式映射到hessian服务中，
+    spring的dispatcherServlet能完成此功能，
+    DispatcherServlet可将匹配模式的请求转发到Hessian服务，
+    web.xml只是定义了“请求转发器”，该转发器将匹配/remoting/*的请求截获，
+    转发给context的bean处理。而HessianServiceExporter提供bean服务。 -->
+    <servlet>
+        <servlet-name>remoting</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>remoting</servlet-name>
+        <url-pattern>/remoting/*</url-pattern>
+    </servlet-mapping>
+
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>

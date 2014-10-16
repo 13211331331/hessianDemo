@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="server-app:war">
+    <output-path>$PROJECT_DIR$/server-app/target</output-path>
+    <root id="archive" name="server-webapp-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="server-app:war exploded" />
+    </root>
+  </artifact>
+</component>
