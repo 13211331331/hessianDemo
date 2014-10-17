@@ -9,7 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class HessianTest {
     public static void main(String[] args){
-        ApplicationContext context = new ClassPathXmlApplicationContext("servlet.xml");  //这里只是你声明的bean的xml文件所在的路径
+        ApplicationContext context = new ClassPathXmlApplicationContext("remoting-servlet.xml");  //这里只是你声明的bean的xml文件所在的路径
         IHello b = (IHello) context.getBean("myServiceClient");
         System.out.println(b.sayHello());
     }

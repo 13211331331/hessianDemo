@@ -12,7 +12,7 @@
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:servlet.xml</param-value>
+        <param-value>classpath*:remoting-servlet.xml</param-value>
     </context-param>
 
 

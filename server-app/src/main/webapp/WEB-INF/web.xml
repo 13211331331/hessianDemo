@@ -6,14 +6,14 @@
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
 
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath*:remoting-servlet.xml</param-value>
+    </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> <!--添加监听器 -->
     </listener>
 
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:servlet.xml</param-value>
-    </context-param>
 
 
 
@@ -45,9 +45,14 @@
     DispatcherServlet可将匹配模式的请求转发到Hessian服务，
     web.xml只是定义了“请求转发器”，该转发器将匹配/remoting/*的请求截获，
     转发给context的bean处理。而HessianServiceExporter提供bean服务。 -->
+
     <servlet>
         <servlet-name>remoting</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>namespace</param-name>
+            <param-value>classes/remoting-servlet</param-value>
+        </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
